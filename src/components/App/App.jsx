@@ -23,6 +23,8 @@ function App() {
         //Set galleryList state to hold gallery data
         setGalleryList(gallery.data);
       })
+      //send back error if problem
+      .catch(err => console.log('There was an error making GET', err))
   }; // end fetchGallery
 
 
@@ -32,17 +34,22 @@ function App() {
           <h1 className="App-title">Goat Gallery</h1>
         </header>
         {/* Example of a List Item */}
+        {}
         <main>
-          <div>
-            {/* Img src pulled from gallery.data - axios: /GET */}
-            <img src="images/goat_small.jpg"/>
-            {/* Description pulled from gallery.data - axios: /GET */}
-            <p>Photo of a goat taken at Glacier National Park.</p>
-            {/* Like button send to gallery.data - axios: /PUT */}
-            <button>Love it!</button>
-            {/* Number of likes pulled from gallery.data - axios: /GET */}
-            <p>4 people love this!</p>
-          </div>
+          {galleryList.map(image => {
+            return(
+              <div key={image.id}>
+                {/* Img src pulled from gallery.data - axios: /GET */}
+                <img src={image.path}/>
+                {/* Description pulled from gallery.data - axios: /GET */}
+                <p>{image.description}</p>
+                {/* Like button send to gallery.data - axios: /PUT */}
+                <button>Love it!</button>
+                {/* Number of likes pulled from gallery.data - axios: /GET */}
+                <p>image.likes</p>
+              </div>
+            );
+          })}
         </main>
       </div>
     ); // end return
