@@ -17,8 +17,8 @@
 [x] - Render `GalleryItem`s
 
 ### GalleryItem.jsx
-[ ] - Create a new **component** called `GalleryItem.jsx`
-[ ] - Send GalleryItems to `GalleryList` via props
+[x] - Create a new **component** called `GalleryItem.jsx`
+[x] - Send GalleryItems to `GalleryList` via props
 [ ] - Swap the image with the description on click. Use [conditional rendering](https://reactjs.org/docs/conditional-rendering.html).
 [ ] - Display the number of likes per item
 [ ] - Button to add a like.
