@@ -1,9 +1,21 @@
 import {useState} from 'react';
 import GalleryItemDescription from '../GalleryItemDescription/GalleryItemDescription'
+import GalleryItemImage from '../GalleryItemImage/GalleryItemImage'
 import './GalleryItem.css';
 
+/**
+ * Renders Each Gallery Item
+ * 
+ * Uses image as prop from Gallery
+ * 
+ * Uses state to track if an image or description has been clicked on.
+ *  - Default set to false.
+ *  - Event handler for click event changes state to true
+ * 
+ * Renders GalleryItemDescription and GalleryItemImage components conditionally.
+ */
 function GalleryItem({image}) {
-
+  //
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
@@ -14,13 +26,16 @@ function GalleryItem({image}) {
   return(
     <div className="GalleryItem">
       {isClicked
-        // 
+        // isClicked = true: show image description
         ? <GalleryItemDescription
             handleClick={handleClick}
             image={image}
           />
         // isClicked = false: show image (default)
-        : <img onClick={handleClick} className="GalleryItem-image" src={image.path}/>
+        : <GalleryItemImage 
+            handleClick={handleClick}
+            image={image}
+          />
         }
       {/* Like button send to gallery.data - axios: /PUT */}
       <button>Love it!</button>
