@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import GalleryItemDescription from '../GalleryItemDescription/GalleryItemDescription'
 import './GalleryItem.css';
 
 function GalleryItem({image}) {
@@ -12,12 +13,15 @@ function GalleryItem({image}) {
 
   return(
     <div className="GalleryItem">
-      {isClicked 
-      // isClicked = true: show image description 
-      ? <p onClick={handleClick} className="GalleryItem-description">{image.description}</p>
-      // isClicked = false: show image (default)
-      : <img onClick={handleClick} className="GalleryItem-image" src={image.path}/>
-      }
+      {isClicked
+        // 
+        ? <GalleryItemDescription
+            handleClick={handleClick}
+            image={image}
+          />
+        // isClicked = false: show image (default)
+        : <img onClick={handleClick} className="GalleryItem-image" src={image.path}/>
+        }
       {/* Like button send to gallery.data - axios: /PUT */}
       <button>Love it!</button>
       {/* Number of likes pulled from gallery.data - axios: /GET */}
