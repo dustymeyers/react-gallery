@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     // call GET function
     fetchGallery();
-  });// end useEffect
+  }, [])// end useEffect
 
   // Axios /GET call
   const fetchGallery = () => {
@@ -26,7 +26,7 @@ function App() {
       })
       //send back error if problem
       .catch(err => console.log('There was an error making GET', err))
-  }; // end fetchGallery
+  } // end fetchGallery
 
 
     return (
