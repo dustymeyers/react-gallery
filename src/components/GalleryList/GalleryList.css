@@ -1,3 +1,16 @@
+.GalleryList{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 90%;
+}
+
+.GalleryList-image-container{
+  width: 200px;
+  margin: 2em;
+}
+
 .GalleryList-image{
   width: 150px;
 }

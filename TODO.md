@@ -11,10 +11,10 @@
 
 ### GalleryList.jsx
 
-[ ] - Create **component** for the `GalleryList`
-[ ] - Pass it data from App.jsx
-[ ] - Iterate through the list of gallery data
-[ ] - Render `GalleryItem`s
+[x] - Create **component** for the `GalleryList`
+[x] - Pass it data from App.jsx
+[x] - Iterate through the list of gallery data
+[x] - Render `GalleryItem`s
 
 ### GalleryItem.jsx
 [ ] - Create a new **component** called `GalleryItem.jsx`
