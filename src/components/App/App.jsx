@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import GalleryList from '../GalleryList/GalleryList';
 import './App.css';
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
 
   // Axios /GET call
   const fetchGallery = () => {
-    // Point server at /gallery using GET
+    // GET from server using /gallery
     axios.get('/gallery')
       // send back data
       .then(gallery => { 
@@ -33,24 +34,10 @@ function App() {
         <header className="App-header">
           <h1 className="App-title">Goat Gallery</h1>
         </header>
-        {/* Example of a List Item */}
-        {}
-        <main>
-          {galleryList.map(image => {
-            return(
-              <div key={image.id}>
-                {/* Img src pulled from gallery.data - axios: /GET */}
-                <img src={image.path}/>
-                {/* Description pulled from gallery.data - axios: /GET */}
-                <p>{image.description}</p>
-                {/* Like button send to gallery.data - axios: /PUT */}
-                <button>Love it!</button>
-                {/* Number of likes pulled from gallery.data - axios: /GET */}
-                <p>image.likes</p>
-              </div>
-            );
-          })}
-        </main>
+        {/* Renders Image Gallery */}
+        <GalleryList
+          galleryList={galleryList}
+        />
       </div>
     ); // end return
 } // end App
