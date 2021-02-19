@@ -1,4 +1,10 @@
+/**
+ * Renders Image for Each Gallery Image Component
+ * 
+ * Uses handleClick and image as props from GalleryList
+ */
 function GalleryItemImage({handleClick, image}) {
+  // render
   return(
     <img 
       onClick={handleClick} 

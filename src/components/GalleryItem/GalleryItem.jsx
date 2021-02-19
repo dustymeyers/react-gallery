@@ -15,14 +15,17 @@ import './GalleryItem.css';
  * Renders GalleryItemDescription and GalleryItemImage components conditionally.
  */
 function GalleryItem({image}) {
-  //
+  // Set a state to track if image or description have been clicked
+  // for conditional rendering purposes.
   const [isClicked, setIsClicked] = useState(false);
 
+  // Event handler for image/description click event
   const handleClick = () => {
     // on click change the boolean state of isClick 
     setIsClicked(!isClicked);
-  };
+  }; // end handleClick
 
+  // render
   return(
     <div className="GalleryItem">
       {isClicked

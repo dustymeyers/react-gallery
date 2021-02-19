@@ -28,7 +28,7 @@ function App() {
       .catch(err => console.log('There was an error making GET', err))
   } // end fetchGallery
 
-
+    // render
     return (
       <div className="App">
         <header className="App-header">
