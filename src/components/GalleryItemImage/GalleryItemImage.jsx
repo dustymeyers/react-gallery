@@ -1,13 +1,13 @@
 /**
  * Renders Image for Each Gallery Image Component
  * 
- * Uses handleClick and image as props from GalleryList
+ * Uses imageToggle and image as props from GalleryList
  */
-function GalleryItemImage({handleClick, image}) {
+function GalleryItemImage({imageToggle, image}) {
   // render
   return(
     <img 
-      onClick={handleClick} 
+      onClick={imageToggle} 
       className="GalleryItem-image" 
       src={image.path}
     />

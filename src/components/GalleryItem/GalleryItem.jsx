@@ -20,10 +20,11 @@ function GalleryItem({image}) {
   const [isClicked, setIsClicked] = useState(false);
 
   // Event handler for image/description click event
-  const handleClick = () => {
+  const imageToggle = () => {
     // on click change the boolean state of isClick 
     setIsClicked(!isClicked);
   }; // end handleClick
+
 
   // render
   return(
@@ -31,12 +32,12 @@ function GalleryItem({image}) {
       {isClicked
         // isClicked = true: show image description
         ? <GalleryItemDescription
-            handleClick={handleClick}
+            imageToggle={imageToggle}
             image={image}
           />
         // isClicked = false: show image (default)
         : <GalleryItemImage 
-            handleClick={handleClick}
+            imageToggle={imageToggle}
             image={image}
           />
         }
