@@ -17,7 +17,12 @@ function App() {
     // Point server at /gallery using GET
     axios.get('/gallery')
       // send back data
-      .then(res => console.log('GET gallery data', res))
+      .then(gallery => { 
+        console.log('GET gallery data', gallery.data);
+        
+        //Set galleryList state to hold gallery data
+        setGalleryList(gallery.data);
+      })
   }; // end fetchGallery
 
 
@@ -40,7 +45,7 @@ function App() {
           </div>
         </main>
       </div>
-    );
-}
+    ); // end return
+} // end App
 
 export default App;
