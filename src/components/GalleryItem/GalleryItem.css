@@ -1,0 +1,8 @@
+.GalleryItem {
+  width: 200px;
+  margin: 2em;
+}
+
+.GalleryItem-image {
+  width: 150px;
+}
