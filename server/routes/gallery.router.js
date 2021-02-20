@@ -73,4 +73,38 @@ router.get('/', (req, res) => {
       }); 
 }); // END GET Route
 
+// POST Route
+router.post('/addImage', (req, res) => {
+  console.log(req.body);
+
+  // req.body holds our data object 
+  // has path and description keys
+  const galleryItem = req.body;
+
+  // SQL string for DB
+  const sqlText = `
+    INSERT INTO "gallery"
+      ("path", "description")
+    Values
+      ($1, $2);
+  `;
+
+  // Query DB
+  pool.query(sqlText, [galleryItem.path, galleryItem.description])
+    // When response is received, send to client
+    .then(dbRes => {
+      console.log('This was posted to DB:', galleryItem);
+
+      // 201 Created
+      res.sendStatus(201);
+    })
+    // or respond with an error and log it
+    .catch(err => {
+      console.log(`Error making DB query: ${sqlText}.`, err);
+
+      // 500 Internal Error
+      res.sendStatus(500);
+    }); 
+}); // END POST Route
+
 module.exports = router;
