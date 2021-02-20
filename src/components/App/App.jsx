@@ -1,11 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import GalleryForm from '../GalleryForm/GalleryForm';
 import GalleryList from '../GalleryList/GalleryList';
 import './App.css';
 
 function App() {
   // Set a state to contain GalleryListData
   const [galleryList, setGalleryList] = useState([]);
+
+  const [imagePath, setImagePath] = useState('');
+
+  const [imageDescription, setImageDescription] = useState('');
 
   // On page load
   useEffect(() => {
@@ -43,17 +48,42 @@ function App() {
         // render gallery after update complete
         fetchGallery();
       })
-      .catch(err => console.log('There was an error making PUT', err))
+      .catch(err => console.log('There was an error making PUT', err));
   } // end likeImage
 
+  // AXIOS /POST call
+  const postToGallery = (path, description) => {
+    console.log(`Adding ${description} from ${path}`);
+
+    // POST {path, description} to server using  /gallery/addImage
+    axios.post('/gallery/addImage', {path, description})
+      // send json object to server wait for response
+      .then(response => {
+        console.log('POST sent', response);
+
+        //render gallery after post complete
+        fetchGallery();
+      })
+      // or notify of error
+      .catch(err => console.log('There was an error making POST', err));
+  } // end postToGallery
+
     // render
-    return (
+    return ( 
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Goat Gallery</h1>
         </header>
+        <GalleryForm      
+          imagePath={imagePath}
+          imageDescription={imageDescription}
+          postToGallery={postToGallery}
+          setImagePath={setImagePath}
+          setImageDescription={setImageDescription}
+        />
         {/* Renders Image Gallery */}
         <GalleryList
+          onChange={evt => setImageDescription(evt.target.value)}
           galleryList={galleryList}
           likeImage={likeImage}
         />
