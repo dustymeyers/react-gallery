@@ -7,6 +7,10 @@ function App() {
   // Set a state to contain GalleryListData
   const [galleryList, setGalleryList] = useState([]);
 
+  const [imagePath, setImagePath] = useState('');
+
+  const [imageDescription, setImageDescription] = useState('');
+
   // On page load
   useEffect(() => {
     // call GET function
@@ -43,17 +47,62 @@ function App() {
         // render gallery after update complete
         fetchGallery();
       })
-      .catch(err => console.log('There was an error making PUT', err))
+      .catch(err => console.log('There was an error making PUT', err));
   } // end likeImage
 
+  // Handle submit event
+  const handleSubmit = (evt) => {
+    console.log('in handleSubmit');
+    
+    // prevent load on form submission
+    evt.preventDefault();
+
+    // add im
+    postToGallery(imagePath, imageDescription);
+  } // end handleSubmit
+
+  // AXIOS /POST call
+  const postToGallery = (path, description) => {
+    console.log(`Adding ${description} from ${path}`);
+
+    // POST {path, description} to server using  /gallery/addImage
+    axios.post('/gallery/addImage', {path, description})
+      // send json object to server wait for response
+      .then(response => {
+        console.log('POST sent', response);
+
+        //render gallery after post complete
+        fetchGallery();
+      })
+      // or notify of error
+      .catch(err => console.log('There was an error making POST', err));
+  } // end postToGallery
+
     // render
-    return (
+    return ( 
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Goat Gallery</h1>
         </header>
+        <h3>Add an Image to the Gallery</h3>
+        {/* Renders Form for Image Submission */}
+        <form onSubmit={handleSubmit}>
+          <input 
+            onChange={evt => setImagePath(evt.target.value)}
+            type="text" 
+            placeholder="Image Address" 
+            required 
+          />
+          <textarea 
+            onChange={evt => setImageDescription(evt.target.value)}
+            rows="3" 
+            placeholder="Write a brief description of the image..."
+          ></textarea>
+          <input type="submit" value="Add Image" />
+        </form>
         {/* Renders Image Gallery */}
         <GalleryList
+          onChange={evt => setImageDescription(evt.target.value)}
           galleryList={galleryList}
           likeImage={likeImage}
         />
