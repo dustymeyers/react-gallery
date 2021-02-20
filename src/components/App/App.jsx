@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import GalleryForm from '../GalleryForm/GalleryForm';
 import GalleryList from '../GalleryList/GalleryList';
 import './App.css';
 
@@ -50,17 +51,6 @@ function App() {
       .catch(err => console.log('There was an error making PUT', err));
   } // end likeImage
 
-  // Handle submit event
-  const handleSubmit = (evt) => {
-    console.log('in handleSubmit');
-    
-    // prevent load on form submission
-    evt.preventDefault();
-
-    // add im
-    postToGallery(imagePath, imageDescription);
-  } // end handleSubmit
-
   // AXIOS /POST call
   const postToGallery = (path, description) => {
     console.log(`Adding ${description} from ${path}`);
@@ -84,22 +74,13 @@ function App() {
         <header className="App-header">
           <h1 className="App-title">Goat Gallery</h1>
         </header>
-        <h3>Add an Image to the Gallery</h3>
-        {/* Renders Form for Image Submission */}
-        <form onSubmit={handleSubmit}>
-          <input 
-            onChange={evt => setImagePath(evt.target.value)}
-            type="text" 
-            placeholder="Image Address" 
-            required 
-          />
-          <textarea 
-            onChange={evt => setImageDescription(evt.target.value)}
-            rows="3" 
-            placeholder="Write a brief description of the image..."
-          ></textarea>
-          <input type="submit" value="Add Image" />
-        </form>
+        <GalleryForm      
+          imagePath={imagePath}
+          imageDescription={imageDescription}
+          postToGallery={postToGallery}
+          setImagePath={setImagePath}
+          setImageDescription={setImageDescription}
+        />
         {/* Renders Image Gallery */}
         <GalleryList
           onChange={evt => setImageDescription(evt.target.value)}
