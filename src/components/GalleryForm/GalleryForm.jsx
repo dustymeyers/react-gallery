@@ -34,7 +34,11 @@ function GalleryForm ({imagePath, imageDescription, postToGallery, setImagePath,
           placeholder="Write a brief description of the image..."
         ></textarea>
         {/* Submit Form Button */}
-        <input type="submit" value="Add Image" />
+        <input 
+          className="GalleryForm-submit-button" 
+          type="submit" 
+          value="Add Image" 
+        />
       </form>
     </div>
   ); // end return

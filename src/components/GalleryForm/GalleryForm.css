@@ -8,9 +8,14 @@
 
 .GalleryForm-path-input{
   width: 100%;
+  margin: .4em;
 }
 
 .GalleryForm-description-input{
   width: 100%;
+  margin: .4em;
 }
 
+.GalleryForm-submit-button{
+  margin: .4em;
+}
