@@ -1,3 +1,12 @@
+/**
+ * Renders a Like Button and the Total Number of Likes 
+ * for each Gallery Image Component
+ * 
+ * Uses image and likeImage as props
+ * 
+ * likeImage sends an axios PUT request from App.jsx
+ */
+
 function GalleryItemLike({image, likeImage}) {
   //render
   return(

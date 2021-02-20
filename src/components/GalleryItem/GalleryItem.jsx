@@ -15,6 +15,7 @@ import './GalleryItem.css';
  * 
  * Renders GalleryItemDescription and GalleryItemImage components conditionally.
  */
+
 function GalleryItem({image, likeImage}) {
   // Set a state to track if image or description have been clicked
   // for conditional rendering purposes.
