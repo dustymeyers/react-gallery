@@ -15,6 +15,8 @@ function App() {
 
   // Axios /GET call
   const fetchGallery = () => {
+    console.log('In fetchGallery');
+
     // GET from server using /gallery
     axios.get('/gallery')
       // send back data
@@ -28,6 +30,13 @@ function App() {
       .catch(err => console.log('There was an error making GET', err))
   } // end fetchGallery
 
+  // Axios /PUT call
+  const likeImage = (imageId) => {
+    console.log('In likeImage. Clicked id: ', imageId);
+
+    
+  } // end likeImage
+
     // render
     return (
       <div className="App">
@@ -37,6 +46,7 @@ function App() {
         {/* Renders Image Gallery */}
         <GalleryList
           galleryList={galleryList}
+          likeImage={likeImage}
         />
       </div>
     ); // end return

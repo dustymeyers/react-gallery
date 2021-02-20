@@ -2,7 +2,7 @@ import GalleryItem from '../GalleryItem/GalleryItem'
 import './GalleryList.css';
 
 
-function GalleryList({galleryList}) {
+function GalleryList({galleryList, likeImage}) {
   return(
     <main className="GalleryList">
       {galleryList.map(image => {
@@ -10,6 +10,7 @@ function GalleryList({galleryList}) {
           <GalleryItem 
             key={image.id}
             image={image}
+            likeImage={likeImage}
           />
         ); // end return
       })}

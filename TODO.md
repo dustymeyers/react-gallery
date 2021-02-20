@@ -7,7 +7,7 @@
 
 ### App.jsx
 
-[ ] - axios `GET` request - `/gallery`
+[x] - axios `GET` request - `/gallery`
 
 ### GalleryList.jsx
 

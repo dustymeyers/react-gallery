@@ -14,7 +14,7 @@ import './GalleryItem.css';
  * 
  * Renders GalleryItemDescription and GalleryItemImage components conditionally.
  */
-function GalleryItem({image}) {
+function GalleryItem({image, likeImage}) {
   // Set a state to track if image or description have been clicked
   // for conditional rendering purposes.
   const [isClicked, setIsClicked] = useState(false);
@@ -25,6 +25,8 @@ function GalleryItem({image}) {
     setIsClicked(!isClicked);
   }; // end handleClick
 
+  
+  
 
   // render
   return(
@@ -42,7 +44,7 @@ function GalleryItem({image}) {
           />
         }
       {/* Like button send to gallery.data - axios: /PUT */}
-      <button>Love it!</button>
+      <button onClick={() => likeImage(image.id)}>Love it!</button>
       {/* Number of likes pulled from gallery.data - axios: /GET */}
       <p className="GalleryItem-likes">{image.likes}</p>
     </div>
