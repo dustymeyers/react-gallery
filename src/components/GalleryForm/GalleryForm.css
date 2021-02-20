@@ -1,0 +1,16 @@
+.GalleryForm-form{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 30%;
+}
+
+.GalleryForm-path-input{
+  width: 100%;
+}
+
+.GalleryForm-description-input{
+  width: 100%;
+}
+

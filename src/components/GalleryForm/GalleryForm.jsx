@@ -1,3 +1,5 @@
+import './GalleryForm.css';
+
 function GalleryForm ({imagePath, imageDescription, postToGallery, setImagePath, setImageDescription}) {
 
   // Handle submit event
@@ -12,12 +14,13 @@ function GalleryForm ({imagePath, imageDescription, postToGallery, setImagePath,
   } // end handleSubmit
 
   return (
-    <>
+    <div className="GalleryForm">
       <h3>Add an Image to the Gallery</h3>
       {/* Renders Form for Image Submission */}
-      <form onSubmit={handleSubmit}>
+      <form className="GalleryForm-form" onSubmit={handleSubmit}>
         {/* Image path input */}
         <input 
+          className="GalleryForm-path-input"
           onChange={evt => setImagePath(evt.target.value)}
           type="text" 
           placeholder="Image Address" 
@@ -25,6 +28,7 @@ function GalleryForm ({imagePath, imageDescription, postToGallery, setImagePath,
         />
         {/* Image description input */}
         <textarea 
+          className="GalleryForm-description-input"
           onChange={evt => setImageDescription(evt.target.value)}
           rows="3" 
           placeholder="Write a brief description of the image..."
@@ -32,7 +36,7 @@ function GalleryForm ({imagePath, imageDescription, postToGallery, setImagePath,
         {/* Submit Form Button */}
         <input type="submit" value="Add Image" />
       </form>
-    </>
+    </div>
   ); // end return
 } // end GalleryForm
 
