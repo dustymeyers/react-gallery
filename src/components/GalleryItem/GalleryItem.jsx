@@ -1,6 +1,7 @@
 import {useState} from 'react';
-import GalleryItemDescription from '../GalleryItemDescription/GalleryItemDescription'
-import GalleryItemImage from '../GalleryItemImage/GalleryItemImage'
+import GalleryItemDescription from '../GalleryItemDescription/GalleryItemDescription';
+import GalleryItemImage from '../GalleryItemImage/GalleryItemImage';
+import GalleryItemLike from '../GalleryItemLike/GalleryItemLike'
 import './GalleryItem.css';
 
 /**
@@ -25,9 +26,6 @@ function GalleryItem({image, likeImage}) {
     setIsClicked(!isClicked);
   }; // end handleClick
 
-  
-  
-
   // render
   return(
     <div className="GalleryItem">
@@ -43,10 +41,10 @@ function GalleryItem({image, likeImage}) {
             image={image}
           />
         }
-      {/* Like button send to gallery.data - axios: /PUT */}
-      <button onClick={() => likeImage(image.id)}>Love it!</button>
-      {/* Number of likes pulled from gallery.data - axios: /GET */}
-      <p className="GalleryItem-likes">{image.likes}</p>
+      <GalleryItemLike 
+        image={image}
+        likeImage={likeImage}
+      />
     </div>
   ); // end return
 } // end GalleryItem

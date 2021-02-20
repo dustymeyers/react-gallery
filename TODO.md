@@ -21,6 +21,6 @@
 [x] - Send GalleryItems to `GalleryList` via props
 [x] - Swap the image with the description on click. Use [conditional rendering](https://reactjs.org/docs/conditional-rendering.html).
 [x] - Display the number of likes per item
-[ ] - Button to add a like.
-  [ ] - use `Axios` to update (`PUT`) the like count `/gallery/like/:id`
-  [ ] - Update the gallery on click.
+[x] - Button to add a like.
+  [x] - use `Axios` to update (`PUT`) the like count `/gallery/like/:id`
+  [x] - Update the gallery on click.
