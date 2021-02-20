@@ -34,7 +34,16 @@ function App() {
   const likeImage = (imageId) => {
     console.log('In likeImage. Clicked id: ', imageId);
 
-    
+    // PUT (update) to server using /gallery/:id
+    axios.put(`/gallery/like/${imageId}`)
+      // send id endpoint parameter
+      .then(response => {
+        console.log('PUT sent', response);
+
+        // render gallery after update complete
+        fetchGallery();
+      })
+      .catch(err => console.log('There was an error making PUT', err))
   } // end likeImage
 
     // render
