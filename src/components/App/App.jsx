@@ -16,7 +16,24 @@ function App() {
   useEffect(() => {
     // call GET function
     fetchGallery();
-  }, [])// end useEffect
+  }, []); // end useEffect
+
+  // Axios /DELETE call
+  const deleteGalleryItem = (itemId) => {
+    console.log('In deleteGalleryItem');
+
+    // DELETE from servuer using /gallery/delete/${itemId}
+    axios.delete(`/gallery/delete/${itemId}`)
+      // send id endpoint parameter
+      .then(response => {
+        console.log('DELETE request sent targeting: ', itemId);
+
+        // render gallery data after delete complete
+        fetchGallery();
+      })
+      // send back error if problem
+      .catch(err => console.log('There was an error making DELETE', err)); 
+  }; // end DeleteGalleryItem
 
   // Axios /GET call
   const fetchGallery = () => {
@@ -33,7 +50,7 @@ function App() {
       })
       //send back error if problem
       .catch(err => console.log('There was an error making GET', err))
-  } // end fetchGallery
+  }; // end fetchGallery
 
   // Axios /PUT call
   const likeImage = (imageId) => {
@@ -49,7 +66,7 @@ function App() {
         fetchGallery();
       })
       .catch(err => console.log('There was an error making PUT', err));
-  } // end likeImage
+  }; // end likeImage
 
   // AXIOS /POST call
   const postToGallery = (path, description) => {
@@ -66,7 +83,7 @@ function App() {
       })
       // or notify of error
       .catch(err => console.log('There was an error making POST', err));
-  } // end postToGallery
+  }; // end postToGallery
 
     // render
     return ( 
@@ -86,6 +103,7 @@ function App() {
           onChange={evt => setImageDescription(evt.target.value)}
           galleryList={galleryList}
           likeImage={likeImage}
+          deleteGalleryItem={deleteGalleryItem}
         />
       </div>
     ); // end return

@@ -15,7 +15,7 @@ import './GalleryList.css';
  * Renders GalleryItem component for each image in galleryList
  */
 
-function GalleryList({galleryList, likeImage}) {
+function GalleryList({deleteGalleryItem, galleryList, likeImage}) {
   return(
     <main className="GalleryList">
       {galleryList.map(image => {
@@ -24,6 +24,7 @@ function GalleryList({galleryList, likeImage}) {
             key={image.id}
             image={image}
             likeImage={likeImage}
+            deleteGalleryItem={deleteGalleryItem}
           />
         ); // end return
       })}

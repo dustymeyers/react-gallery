@@ -16,14 +16,10 @@ import './GalleryItem.css';
  * Renders GalleryItemDescription and GalleryItemImage components conditionally.
  */
 
-function GalleryItem({image, likeImage}) {
+function GalleryItem({image, likeImage, deleteGalleryItem}) {
   // Set a state to track if image or description have been clicked
   // for conditional rendering purposes.
   const [isClicked, setIsClicked] = useState(false);
-
-  const deleteItem= () => {
-    console.log('in deleteImage');
-  };
 
   // Event handler for image/description click event
   const imageToggle = () => {
@@ -53,7 +49,7 @@ function GalleryItem({image, likeImage}) {
         likeImage={likeImage}
       />
       {/* Delete Button */}
-      <button onClick={deleteItem}>Delete</button>
+      <button onClick={() => deleteGalleryItem(image.id)}>Delete</button>
     </div>
   ); // end return
 } // end GalleryItem
