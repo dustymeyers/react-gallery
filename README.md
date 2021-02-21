@@ -14,6 +14,7 @@ An input form has been implemented to allow the user to add more photos and desc
 ![Delete and like buttons](images/likedelete.gif)
 
 ![Form submission](images/formsubmit.gif)
+
 ### Prerequisites
 The following software are needed to install the app
 
