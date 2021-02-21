@@ -21,6 +21,10 @@ function GalleryItem({image, likeImage}) {
   // for conditional rendering purposes.
   const [isClicked, setIsClicked] = useState(false);
 
+  const deleteItem= () => {
+    console.log('in deleteImage');
+  };
+
   // Event handler for image/description click event
   const imageToggle = () => {
     // on click change the boolean state of isClick 
@@ -30,6 +34,7 @@ function GalleryItem({image, likeImage}) {
   // render
   return(
     <div className="GalleryItem">
+      {/* Toggles between image and description */}
       {isClicked
         // isClicked = true: show image description
         ? <GalleryItemDescription
@@ -42,10 +47,13 @@ function GalleryItem({image, likeImage}) {
             image={image}
           />
         }
+        {/* Renders both a "like button" and a total likes display */}
       <GalleryItemLike 
         image={image}
         likeImage={likeImage}
       />
+      {/* Delete Button */}
+      <button onClick={deleteItem}>Delete</button>
     </div>
   ); // end return
 } // end GalleryItem

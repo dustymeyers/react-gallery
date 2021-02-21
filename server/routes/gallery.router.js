@@ -5,49 +5,38 @@ const pool = require('../modules/pool');
 
 // DO NOT MODIFY THIS FILE FOR BASE MODE
 
-// PUT Route
-router.put('/like/:id', (req, res) => {
-    console.log(req.params);
+// DELETE Route
 
-    // req.params.id = :id
-    const galleryId = req.params.id;
+router.delete('/delete/:id', (req,res) => {
+  console.log('Attempting DELETE');
 
-    /* 
-      for(const galleryItem of galleryItems) {
-          if(galleryItem.id == galleryId) {
-              galleryItem.likes += 1;
-          }
-      }
+   // req.params.id = :id
+  const galleryId = req.params.id;
+
+  // SQL string for DB
+  const sqlText= 'DELETE FROM "gallery" WHERE "id"=$1;';
+
+  // Query DB
+  // galleryId = $1
+  pool.query(sqlText, [galleryId])
+    // When response is received, send to client
+    .then(dbRes => {
+      console.log(`Deleted item with id, ${galleryId}, from gallery`);
       res.sendStatus(200);
-    */
-  
-    // SQL string for DB
-    const sqlText = `
-      UPDATE "gallery"
-      SET "likes" = "likes" + 1
-      WHERE "id" = $1;
-    `;
+    })
+    // or respond with an error and log it
+    .catch(err => {
+      console.log(`Error making DB query: ${sqlText}.`, err);
 
-    pool.query(sqlText, [galleryId])
-      // When response is received, send to client
-      .then(dbRes => {
-        console.log(`Incremented like at id ${galleryId}`);
-
-        // 200 OK
-        res.sendStatus(200);
-      })
-      // or respond with an error and log it
-      .catch(err => {
-        console.log(`Error making DB query: ${sqlText}.`, err);
-
-        // 500 Internal Error
-        res.sendStatus(500);
-      });
-}); // END PUT Route
+      // 500 Internal Error
+      res.sendStatus(500);
+    }); 
+}); // end DELETE Route
 
 // GET Route
-router.get('/', (req, res) => {
+router.get('/', (req, res) => {  
     // res.send(galleryItems);
+    console.log('Attempting GET');
 
     // SQL string for DB
     const sqlText = `
@@ -75,7 +64,7 @@ router.get('/', (req, res) => {
 
 // POST Route
 router.post('/addImage', (req, res) => {
-  console.log(req.body);
+  console.log('Attempting POST');
 
   // req.body holds our data object 
   // has path and description keys
@@ -90,6 +79,8 @@ router.post('/addImage', (req, res) => {
   `;
 
   // Query DB
+  // galleryItem.path = $1
+  // galleryItem.description = $2
   pool.query(sqlText, [galleryItem.path, galleryItem.description])
     // When response is received, send to client
     .then(dbRes => {
@@ -106,5 +97,46 @@ router.post('/addImage', (req, res) => {
       res.sendStatus(500);
     }); 
 }); // END POST Route
+
+// PUT Route
+router.put('/like/:id', (req, res) => {
+  console.log('Attempting PUT');
+
+  // req.params.id = :id
+  const galleryId = req.params.id;
+
+  /* 
+    for(const galleryItem of galleryItems) {
+        if(galleryItem.id == galleryId) {
+            galleryItem.likes += 1;
+        }
+    }
+    res.sendStatus(200);
+  */
+
+  // SQL string for DB
+  const sqlText = `
+    UPDATE "gallery"
+    SET "likes" = "likes" + 1
+    WHERE "id" = $1;
+  `;
+
+  pool.query(sqlText, [galleryId])
+    // When response is received, send to client
+    .then(dbRes => {
+      console.log(`Incremented like at id ${galleryId}`);
+
+      // 200 OK
+      res.sendStatus(200);
+    })
+    // or respond with an error and log it
+    .catch(err => {
+      console.log(`Error making DB query: ${sqlText}.`, err);
+
+      // 500 Internal Error
+      res.sendStatus(500);
+    });
+}); // END PUT Route
+
 
 module.exports = router;
