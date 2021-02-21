@@ -16,7 +16,7 @@ import './GalleryItem.css';
  * Renders GalleryItemDescription and GalleryItemImage components conditionally.
  */
 
-function GalleryItem({image, likeImage}) {
+function GalleryItem({image, likeImage, deleteGalleryItem}) {
   // Set a state to track if image or description have been clicked
   // for conditional rendering purposes.
   const [isClicked, setIsClicked] = useState(false);
@@ -30,6 +30,7 @@ function GalleryItem({image, likeImage}) {
   // render
   return(
     <div className="GalleryItem">
+      {/* Toggles between image and description */}
       {isClicked
         // isClicked = true: show image description
         ? <GalleryItemDescription
@@ -42,10 +43,13 @@ function GalleryItem({image, likeImage}) {
             image={image}
           />
         }
+        {/* Renders both a "like button" and a total likes display */}
       <GalleryItemLike 
         image={image}
         likeImage={likeImage}
       />
+      {/* Delete Button */}
+      <button onClick={() => deleteGalleryItem(image.id)}>Delete</button>
     </div>
   ); // end return
 } // end GalleryItem
