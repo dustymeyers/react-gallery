@@ -11,6 +11,11 @@ function GalleryForm ({imagePath, imageDescription, postToGallery, setImagePath,
 
     // add im
     postToGallery(imagePath, imageDescription);
+
+    // Clear Inputs
+    setImageDescription('');
+
+    setImagePath('');
   } // end handleSubmit
 
   return (
@@ -21,17 +26,21 @@ function GalleryForm ({imagePath, imageDescription, postToGallery, setImagePath,
         {/* Image path input */}
         <input 
           className="GalleryForm-path-input"
+          value={imagePath}
           onChange={evt => setImagePath(evt.target.value)}
           type="text" 
           placeholder="Image Address" 
+          max="255"
           required 
         />
         {/* Image description input */}
         <textarea 
           className="GalleryForm-description-input"
+          value={imageDescription}
           onChange={evt => setImageDescription(evt.target.value)}
           rows="3" 
           placeholder="Write a brief description of the image..."
+          max="255"
         ></textarea>
         {/* Submit Form Button */}
         <input 

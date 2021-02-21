@@ -89,7 +89,7 @@ function App() {
     return ( 
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Goat Gallery</h1>
+          <h1 className="App-title">Image Gallery</h1>
         </header>
         <GalleryForm      
           imagePath={imagePath}

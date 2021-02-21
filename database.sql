@@ -5,8 +5,8 @@ DROP TABLE IF EXISTS "gallery";
 -- This table holds all gallery data
 CREATE TABLE "gallery"(
   "id" SERIAL PRIMARY KEY,
-  "path" VARCHAR(1024) NOT NULL,
-  "description" VARCHAR(1024) NOT NULL,
+  "path" VARCHAR(255) NOT NULL,
+  "description" VARCHAR(255) NOT NULL,
   "likes" INTEGER DEFAULT 0;
 );
 
